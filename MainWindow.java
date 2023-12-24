@@ -1,19 +1,36 @@
+/**
+ * @author Thomas Boyle
+ * @version 1.0
+ * @since 1.0
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * This class is the default window where the user can upload a data file
+ * and select the visualiations they want to see
+ */
 public class MainWindow implements ActionListener{
 
     private JFrame mainFrame;
     private JButton fileUpButton;
     private String filepath;
 
+    /**
+     * The default constructor creates the main frame and file upload button, 
+     * but does not implement them. 
+     */
     MainWindow(){
         this.mainFrame = new JFrame("Strong Data Visualizer");
         this.fileUpButton = new JButton("Upload File");
         this.filepath = null;
     }
 
+    /**
+     * createWindow initializes the frame and buttons.
+     */
     public void createWindow(){
 
         // Create and set up the window
@@ -30,6 +47,10 @@ public class MainWindow implements ActionListener{
 
     }
 
+    /**
+     * This initializes the button that gets an input file (which should be the
+     * Strong data file)
+     */
     private void initFileUpButton(){
         JPanel buttonPanel = new JPanel();
         JPanel containerPanel = new JPanel();
@@ -47,6 +68,15 @@ public class MainWindow implements ActionListener{
 
     }
 
+    /**
+     * Override of actionPerformed so that MainWindow can implement ActionListener.
+     * 
+     * If fileUpButton is clicked, a file upload option pane appears and the filepath
+     * that the user subsequently selects is saved into the filepath attribute of this
+     * class. 
+     * 
+     * @param evt A runtime event (one of the buttons clicked)
+     */
     @Override
     public void actionPerformed(ActionEvent evt){
         if(evt.getSource() == this.fileUpButton){
