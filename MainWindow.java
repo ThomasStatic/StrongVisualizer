@@ -7,10 +7,12 @@ public class MainWindow implements ActionListener{
 
     private JFrame mainFrame;
     private JButton fileUpButton;
+    private String filepath;
 
     MainWindow(){
         this.mainFrame = new JFrame("Strong Data Visualizer");
         this.fileUpButton = new JButton("Upload File");
+        this.filepath = null;
     }
 
     public void createWindow(){
@@ -55,8 +57,8 @@ public class MainWindow implements ActionListener{
             int response = file_upload.showOpenDialog(null);
 
             if(response  == JFileChooser.APPROVE_OPTION){
-                File file_path = new File(file_upload.getSelectedFile().getAbsolutePath());
-                System.out.println(file_path);
+                this.filepath = file_upload.getSelectedFile().getAbsolutePath();
+                System.out.println(filepath);
 
             }
         }
