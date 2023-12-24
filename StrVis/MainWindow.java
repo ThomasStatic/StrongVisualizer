@@ -1,12 +1,16 @@
+package StrVis;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
 /**
  * @author Thomas Boyle
  * @version 1.0
  * @since 1.0
  */
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+
 
 /**
  * This class is the default window where the user can upload a data file
