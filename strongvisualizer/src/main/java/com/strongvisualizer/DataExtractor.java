@@ -54,6 +54,9 @@ public class DataExtractor {
         }
     }
 
+    /**
+     * Prints to the console all data read in from a csv file into the allData attribute 
+     */
     public void printAllData(){
         for(String[] row : this.allData){
             for(String cell : row){
