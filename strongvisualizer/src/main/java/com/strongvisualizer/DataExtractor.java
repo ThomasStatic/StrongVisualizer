@@ -33,7 +33,6 @@ public class DataExtractor {
         this.filepath = filepathIN;
         this.allData = null;
         readData();
-        printAllData();
 
     }
 
@@ -41,7 +40,7 @@ public class DataExtractor {
      * Using the openCSV library, read all the data from the user supplied file into
      * the allData attribute of this class
      */
-    public void readData(){
+    private void readData(){
         try{
         FileReader fileReader = new FileReader(this.filepath);
 
