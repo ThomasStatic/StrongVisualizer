@@ -1,5 +1,9 @@
 package com.strongvisualizer;
 
+import java.io.FileReader;
+import java.util.*;
+
+import com.opencsv.*;
 
 
 
@@ -16,6 +20,7 @@ package com.strongvisualizer;
  */
 public class DataExtractor {
     private String filepath;
+    List<String[]> allData; 
 
     /**
      * This constructor sets up the filepath to be whatever MainWindow's
@@ -25,5 +30,26 @@ public class DataExtractor {
      */
     DataExtractor(String filepathIN){
         this.filepath = filepathIN;
+        this.allData = null;
+        readData();
+
+    }
+
+    /**
+     * Using the openCSV library, read all the data from the user supplied file into
+     * the allData attribute of this class
+     */
+    public void readData(){
+        try{
+        FileReader fileReader = new FileReader(this.filepath);
+
+        CSVReader csvReader = new CSVReaderBuilder(fileReader).build();
+
+        this.allData = csvReader.readAll();
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
