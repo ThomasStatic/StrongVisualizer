@@ -1,4 +1,4 @@
-package strongvisualizer.src.main.java.com.strongvisualizer;
+package com.strongvisualizer;
 
 /**
  * @author Thomas Boyle

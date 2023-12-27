@@ -1,4 +1,4 @@
-package strongvisualizer.src.main.java.com.strongvisualizer;
+package com.strongvisualizer;
 
 import javax.swing.*;
 import java.awt.*;
