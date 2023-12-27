@@ -33,6 +33,7 @@ public class DataExtractor {
         this.filepath = filepathIN;
         this.allData = null;
         readData();
+        printAllData();
 
     }
 
