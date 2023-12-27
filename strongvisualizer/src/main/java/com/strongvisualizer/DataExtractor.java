@@ -3,7 +3,8 @@ package com.strongvisualizer;
 import java.io.FileReader;
 import java.util.*;
 
-import com.opencsv.*;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 
 
 
@@ -50,6 +51,15 @@ public class DataExtractor {
         }
         catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public void printAllData(){
+        for(String[] row : this.allData){
+            for(String cell : row){
+                System.out.println(cell + "\t");
+            }
+            System.out.println("\n");
         }
     }
 }
