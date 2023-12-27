@@ -1,4 +1,4 @@
-package StrVis;
+package strongvisualizer.src.main.java.com.strongvisualizer;
 
 import javax.swing.*;
 import java.awt.*;

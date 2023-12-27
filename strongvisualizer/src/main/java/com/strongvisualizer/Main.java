@@ -1,4 +1,5 @@
-package StrVis;
+package strongvisualizer.src.main.java.com.strongvisualizer;
+
 /**
  * @author Thomas Boyle
  * @version 1.0
