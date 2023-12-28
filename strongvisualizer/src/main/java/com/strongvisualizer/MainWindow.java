@@ -1,6 +1,9 @@
 package com.strongvisualizer;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -89,6 +92,8 @@ public class MainWindow implements ActionListener{
     public void actionPerformed(ActionEvent evt){
         if(evt.getSource() == this.fileUpButton){
             JFileChooser file_upload = new JFileChooser();
+            FileNameExtensionFilter csvFileFilter = new FileNameExtensionFilter("CSV file", "csv");
+            file_upload.setFileFilter(csvFileFilter);
             //file_upload.showOpenDialog(null);
 
             int response = file_upload.showOpenDialog(null);
