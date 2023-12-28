@@ -3,8 +3,11 @@ package com.strongvisualizer;
 import java.io.FileReader;
 import java.util.*;
 
+import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
+import com.opencsv.CSVParser;
+import com.opencsv.CSVParserBuilder;
 
 
 
@@ -43,8 +46,17 @@ public class DataExtractor {
     private void readData(){
         try{
         FileReader fileReader = new FileReader(this.filepath);
+        
+        CSVParser csvParser = new CSVParserBuilder()
+        .withSeparator(';')
+        .withIgnoreQuotations(true)
+        .build();
 
-        CSVReader csvReader = new CSVReaderBuilder(fileReader).build();
+
+        CSVReader csvReader = new CSVReaderBuilder(fileReader)
+        .withCSVParser(csvParser)
+        .withSkipLines(1)
+        .build();
 
         this.allData = csvReader.readAll();
 
@@ -64,5 +76,17 @@ public class DataExtractor {
             }
             System.out.println("\n");
         }
+    }
+
+    public void getExercises(){
+
+
+        ArrayList<String> tempList = new ArrayList<>();
+
+        for(String[] row : this.allData){
+            System.out.println(row[1]);
+        }
+
+        
     }
 }
