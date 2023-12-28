@@ -36,6 +36,7 @@ public class MainWindow implements ActionListener{
         this.fileUpButton = new JButton("Upload File");
         this.filepath = null;
         this.dataExtractor = null;
+        this.selectVisFrame = null;
     }
 
     /**
@@ -44,7 +45,7 @@ public class MainWindow implements ActionListener{
     public void createStartWindow(){
 
         // Create and set up the window
-        this.fileUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.fileUpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
 
         initFileUpButton();
@@ -102,14 +103,29 @@ public class MainWindow implements ActionListener{
                 this.filepath = file_upload.getSelectedFile().getAbsolutePath();
                 System.out.println(filepath);
                 this.dataExtractor = new DataExtractor(filepath);
-                this.dataExtractor.printAllData();
+                //this.dataExtractor.printAllData();
+                this.selectVisFrame = new JFrame("Strong Data Visualizer");
                 this.fileUpFrame.dispatchEvent(new WindowEvent(this.fileUpFrame, WindowEvent.WINDOW_CLOSING));
+                createVisSelectWindow();
                 
 
             }
 
 
         }
+
+    }
+
+    private void createVisSelectWindow(){
+
+        // Create and set up the window
+        this.selectVisFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+
+        // Display the window
+        this.selectVisFrame.setLocationRelativeTo(null);
+        this.selectVisFrame.pack(); // Pack sets the screensize to be big enough for all the components in it
+        this.selectVisFrame.setVisible(true);
 
     }
 
