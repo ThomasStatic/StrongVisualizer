@@ -22,6 +22,7 @@ public class MainWindow implements ActionListener{
     private JButton fileUpButton;
     private String filepath;
     private DataExtractor dataExtractor;
+    private JFrame selectVisFrame;
 
     /**
      * The default constructor creates the main frame and file upload button, 
@@ -97,6 +98,7 @@ public class MainWindow implements ActionListener{
                 System.out.println(filepath);
                 this.dataExtractor = new DataExtractor(filepath);
                 this.dataExtractor.printAllData();
+                this.fileUpFrame.dispatchEvent(new WindowEvent(this.fileUpFrame, WindowEvent.WINDOW_CLOSING));
                 
 
             }
