@@ -41,7 +41,7 @@ public class MainWindow implements ActionListener{
     /**
      * createWindow initializes the frame and buttons.
      */
-    public void createWindow(){
+    public void createStartWindow(){
 
         // Create and set up the window
         this.fileUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
