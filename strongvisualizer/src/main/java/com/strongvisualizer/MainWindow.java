@@ -18,7 +18,7 @@ import java.awt.event.*;
  */
 public class MainWindow implements ActionListener{
 
-    private JFrame mainFrame;
+    private JFrame fileUpFrame;
     private JButton fileUpButton;
     private String filepath;
     private DataExtractor dataExtractor;
@@ -28,7 +28,7 @@ public class MainWindow implements ActionListener{
      * but does not implement them. 
      */
     MainWindow(){
-        this.mainFrame = new JFrame("Strong Data Visualizer");
+        this.fileUpFrame = new JFrame("Strong Data Visualizer");
         this.fileUpButton = new JButton("Upload File");
         this.filepath = null;
         this.dataExtractor = null;
@@ -40,15 +40,15 @@ public class MainWindow implements ActionListener{
     public void createWindow(){
 
         // Create and set up the window
-        this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.fileUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
 
         initFileUpButton();
 
         // Display the window
-        this.mainFrame.setLocationRelativeTo(null);
-        this.mainFrame.pack(); // Pack sets the screensize to be big enough for all the components in it
-        this.mainFrame.setVisible(true);
+        this.fileUpFrame.setLocationRelativeTo(null);
+        this.fileUpFrame.pack(); // Pack sets the screensize to be big enough for all the components in it
+        this.fileUpFrame.setVisible(true);
         
 
     }
@@ -69,10 +69,11 @@ public class MainWindow implements ActionListener{
 
         buttonPanel.add(this.fileUpButton);
         containerPanel.add(buttonPanel);
-        this.mainFrame.getContentPane().add(containerPanel);
+        this.fileUpFrame.getContentPane().add(containerPanel);
 
 
     }
+
 
     /**
      * Override of actionPerformed so that MainWindow can implement ActionListener.
@@ -99,6 +100,8 @@ public class MainWindow implements ActionListener{
                 
 
             }
+
+
         }
 
     }
