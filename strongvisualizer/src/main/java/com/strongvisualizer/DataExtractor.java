@@ -47,16 +47,17 @@ public class DataExtractor {
         try{
         FileReader fileReader = new FileReader(this.filepath);
         
-        CSVParser csvParser = new CSVParserBuilder()
-        .withSeparator(';')
-        .withIgnoreQuotations(true)
-        .build();
+         CSVParser csvParser = new CSVParserBuilder()
+         .withSeparator(';')
+        // .withIgnoreQuotations(true)
+         .build();
 
 
         CSVReader csvReader = new CSVReaderBuilder(fileReader)
+        //.withSkipLines(1)
         .withCSVParser(csvParser)
-        .withSkipLines(1)
         .build();
+
 
         this.allData = csvReader.readAll();
 
@@ -78,15 +79,19 @@ public class DataExtractor {
         }
     }
 
-    public void getExercises(){
+    public String[] getExercises(){
 
 
-        ArrayList<String> tempList = new ArrayList<>();
+        Set<String> tempSet = new HashSet<>();
+        
 
         for(String[] row : this.allData){
-            System.out.println(row[1]);
+            tempSet.add(row[2].trim());
         }
+        tempSet = new TreeSet<String>(tempSet);
+        String[] uniqueExercises = tempSet.toArray(new String[0]);
 
+        return uniqueExercises;
         
     }
 }
