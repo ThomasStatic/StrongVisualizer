@@ -135,15 +135,9 @@ public class MainWindow implements ActionListener{
         this.visContainerPanel = new JPanel();
         this.visContainerPanel.setLayout(new GridLayout(1,2));
         this.selectVisFrame.add(this.visContainerPanel);
-        
-        this.visSelectorsPanel = new JPanel();
-        this.visSelectorsPanel.setLayout(new GridLayout(4,1));
-        this.visCurStatsPanel = new JPanel();
-        this.visCurStatsPanel.setLayout(new GridLayout(1,1));
 
-
-        this.visContainerPanel.add(this.visSelectorsPanel);
-        this.visContainerPanel.add(this.visCurStatsPanel);
+        initVisSelectorPanels();
+        initExerciseCb(exerciseOptions);
         
 
 
@@ -153,6 +147,21 @@ public class MainWindow implements ActionListener{
         this.selectVisFrame.pack(); // Pack sets the screensize to be big enough for all the components in it
         this.selectVisFrame.setVisible(true);
 
+
+    }
+
+    private void initVisSelectorPanels(){
+
+        // Panel to contain the combo box and generate visuals buttons
+        this.visSelectorsPanel = new JPanel();
+        this.visSelectorsPanel.setLayout(new GridLayout(4,1));
+        this.visContainerPanel.add(this.visSelectorsPanel);
+
+        // Panel to contain 1RM stats
+        this.visCurStatsPanel = new JPanel();
+        this.visCurStatsPanel.setLayout(new GridLayout(1,1));
+        this.visContainerPanel.add(this.visCurStatsPanel);
+        
 
     }
 
