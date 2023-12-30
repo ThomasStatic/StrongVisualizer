@@ -30,6 +30,9 @@ public class MainWindow implements ActionListener{
     private JPanel visSelectorsPanel;
     private JPanel visCurStatsPanel;
     private JComboBox<String> excerciseCb;
+    private JButton gen1RmBtn;
+    private JButton genVolumeBtn;
+    private JButton genTopSetBtn;
 
     /**
      * The default constructor creates the main frame and file upload button, 
@@ -45,6 +48,9 @@ public class MainWindow implements ActionListener{
         this.visSelectorsPanel = null;
         this.visCurStatsPanel = null;
         this.excerciseCb = null;
+        this.gen1RmBtn = null;
+        this.genVolumeBtn = null;
+        this.genTopSetBtn = null;
     }
 
     /**
@@ -134,14 +140,12 @@ public class MainWindow implements ActionListener{
         
         this.visContainerPanel = new JPanel();
         this.visContainerPanel.setLayout(new GridLayout(1,2));
-        this.selectVisFrame.add(this.visContainerPanel);
+        this.selectVisFrame.getContentPane().add(this.visContainerPanel);
 
         initVisSelectorPanels();
         initExerciseCb(exerciseOptions);
+        initVisualButtons();
         
-
-
-
         // Display the window
         this.selectVisFrame.setLocationRelativeTo(null);
         this.selectVisFrame.pack(); // Pack sets the screensize to be big enough for all the components in it
@@ -154,7 +158,7 @@ public class MainWindow implements ActionListener{
 
         // Panel to contain the combo box and generate visuals buttons
         this.visSelectorsPanel = new JPanel();
-        this.visSelectorsPanel.setLayout(new GridLayout(4,1));
+        this.visSelectorsPanel.setLayout(new GridLayout(4,1,0,20));
         this.visContainerPanel.add(this.visSelectorsPanel);
 
         // Panel to contain 1RM stats
@@ -166,10 +170,34 @@ public class MainWindow implements ActionListener{
     }
 
     private void initExerciseCb(String[] exerciseOptions){
+        
+        //Combo box of unique exercises from data set
         this.excerciseCb = new JComboBox<String>(exerciseOptions);
         this.visSelectorsPanel.add(this.excerciseCb);
 
         
+    }
+
+    private void initVisualButtons(){
+
+        // Initialize the 1 rep maximum weight estimates over time button
+        this.gen1RmBtn = new JButton("1 RM Estimates");
+        this.gen1RmBtn.setFocusable(false);
+        this.gen1RmBtn.addActionListener(this);
+        this.visSelectorsPanel.add(this.gen1RmBtn);
+
+        //Initialize the volume over time button
+        this.genVolumeBtn = new JButton("Volume");
+        this.genVolumeBtn.setFocusable(false);
+        this.genVolumeBtn.addActionListener(this);
+        this.visSelectorsPanel.add(this.genVolumeBtn);
+
+        // Initialize the top set over time button
+        this.genTopSetBtn = new JButton("Top Set");
+        this.genTopSetBtn.setFocusable(false);
+        this.genTopSetBtn.addActionListener(this);
+        this.visSelectorsPanel.add(this.genTopSetBtn);
+
     }
 
     
