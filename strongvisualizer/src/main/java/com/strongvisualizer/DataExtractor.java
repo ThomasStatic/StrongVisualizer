@@ -96,6 +96,13 @@ public class DataExtractor {
     }
 
     public List<String[]> getAllData(){
-        return this.allData;
+        List<String[]> allDataCopy = new ArrayList<String[]>(this.allData);
+        
+        for(String[] row : allDataCopy){
+            String[] cleanDate = row[0].split(" ");
+            row[0] = cleanDate[0];
+
+        }
+        return allDataCopy;
     }
 }
