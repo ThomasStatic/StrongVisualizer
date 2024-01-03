@@ -19,6 +19,9 @@ public class LineChart extends ApplicationFrame{
     public LineChart(String applicationTitle, String chartTitle, String xAxisTitle,
     String yAxisTitle, List<String[]> dataIN){
         super(applicationTitle);
+
+        this.data = new ArrayList<String[]>(dataIN);
+        
         JFreeChart lineChart = ChartFactory.createLineChart(chartTitle,
         xAxisTitle,
         yAxisTitle,
@@ -28,7 +31,7 @@ public class LineChart extends ApplicationFrame{
         true,
         true);
 
-        this.data = new ArrayList<String[]>(dataIN);
+        
 
         ChartPanel chartPanel = new ChartPanel(lineChart);
         chartPanel.setPreferredSize(new Dimension(560,367));

@@ -130,6 +130,13 @@ public class MainWindow implements ActionListener{
 
 
         }
+        if(evt.getSource() == this.gen1RmBtn){
+            String[] exerciseOptions = this.dataExtractor.getExercises();
+            String exerciseSelection = exerciseOptions[this.excerciseCb.getSelectedIndex()];
+            VisualizationsWindow VW = new VisualizationsWindow(exerciseSelection,this.dataExtractor.getAllData());
+            VW.generateRmDataSet();
+            VW.generateRmVisual();
+        }
 
     }
 

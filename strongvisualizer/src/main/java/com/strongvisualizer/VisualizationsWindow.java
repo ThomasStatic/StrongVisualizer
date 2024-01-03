@@ -28,6 +28,13 @@ public class VisualizationsWindow {
         this.RmDataSet = new ArrayList<String[]>();
     }
 
+    public void generateRmVisual(){
+        LineChart rMChart = new LineChart(this.exercise+" 1 RM Estimates Over Time", 
+        this.exercise+" 1 RM Estimates Over Time", 
+        "Data", "Estimate (Lbs)", this.RmDataSet);
+        rMChart.pack();
+        rMChart.setVisible(true);
+    }
 
     public void generateRmDataSet(){
         for(String[] row : this.masterSet){
@@ -41,8 +48,8 @@ public class VisualizationsWindow {
             String[] temp = new String[3];
 
             // Copy the data and exercise name into the temp array
-            temp[1] = row[0];
-            temp[2] = row[2];
+            temp[2] = row[0];
+            temp[1] = row[2];
 
             // Set the value column of temp to be the 1RM of each row
             temp[0] = estimateOneRepMax(Integer.valueOf(row[4]), Integer.valueOf(row[6]));
