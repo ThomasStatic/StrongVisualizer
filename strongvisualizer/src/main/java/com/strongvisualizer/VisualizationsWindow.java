@@ -14,7 +14,8 @@ import java.util.*;
 public class VisualizationsWindow {
 
     private String exercise; 
-    private List<String[]> dataSet;
+    private List<String[]> masterSet;
+    private List<String[]> RmDataSet;
 
     /**
      * Constructor
@@ -23,7 +24,34 @@ public class VisualizationsWindow {
      */
     VisualizationsWindow(String exerciseIN, List<String[]> dataSetIN){
         this.exercise = exerciseIN;
-        this.dataSet = new ArrayList<String[]>(dataSetIN);
+        this.masterSet = new ArrayList<String[]>(dataSetIN);
+        this.RmDataSet = new ArrayList<String[]>();
+    }
+
+
+    public void generateRmDataSet(){
+        for(String[] row : this.masterSet){
+
+            // If the row of data isn't for our dersired exercise, skip it
+            if(!(row[2].equals(this.exercise))){
+                continue;
+            }
+
+            // Create a String array to hold the 3 rows of data we care about
+            String[] temp = new String[3];
+
+            // Copy the data and exercise name into the temp array
+            temp[1] = row[0];
+            temp[2] = row[2];
+
+            // Set the value column of temp to be the 1RM of each row
+            temp[0] = estimateOneRepMax(Integer.valueOf(row[4]), Integer.valueOf(row[6]));
+
+            this.RmDataSet.add(temp);
+
+            System.out.println(temp[1] + "\t" + temp[2] + "\t" + temp[0]);
+        }
+        
     }
 
     /**
@@ -33,14 +61,14 @@ public class VisualizationsWindow {
      * @param reps   The number of reps the user did at that weight
      * @return  The estimated 1 RM of the user on the given exercise
      */
-    private int estimateOneRepMax(int weight, int reps){
+    private String estimateOneRepMax(int weight, int reps){
 
         float brzycki = Brzycki(weight, reps);
         float epley = Epley(weight, reps);
         float lombardi = Lombardi(weight, reps);
         float oconner = OConner(weight, reps);
 
-        return (int) Math.round((brzycki+epley+lombardi+oconner)/4);
+        return  String.valueOf(Math.round((brzycki+epley+lombardi+oconner)/4));
 
     }
 
