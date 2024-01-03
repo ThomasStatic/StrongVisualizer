@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.strongvisualizer","l":"DataExtractor"},{"p":"com.strongvisualizer","l":"Main"},{"p":"com.strongvisualizer","l":"MainWindow"},{"p":"com.strongvisualizer","l":"Visualizations"}];updateSearchResults();
