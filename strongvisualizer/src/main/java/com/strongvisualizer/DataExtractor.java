@@ -94,4 +94,8 @@ public class DataExtractor {
         return uniqueExercises;
         
     }
+
+    public List<String[]> getAllData(){
+        return this.allData;
+    }
 }
