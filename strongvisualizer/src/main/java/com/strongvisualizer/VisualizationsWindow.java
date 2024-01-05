@@ -37,27 +37,43 @@ public class VisualizationsWindow {
     }
 
     public void generateRmDataSet(){
+        LinkedHashMap<String, Float> tempMap = new LinkedHashMap<>();
         for(String[] row : this.masterSet){
 
             // If the row of data isn't for our dersired exercise, skip it
             if(!(row[2].equals(this.exercise))){
                 continue;
             }
+            
+            // Generate a 1RM estimate for the current row
+            float rmEstimate = estimateOneRepMax(Integer.valueOf(row[4]), Integer.valueOf(row[6]));
 
-            // Create a String array to hold the 3 rows of data we care about
-            String[] temp = new String[3];
+            // If we already have an entry for this date, check if its a greater 1RM
+            if(tempMap.containsKey(row[0])){
+                
+                // If the entry for this date has a greater RM keep it
+                if(tempMap.get(row[0]) > rmEstimate){
+                    continue;
+                }
+            }
 
-            // Copy the data and exercise name into the temp array
-            temp[2] = row[0];
-            temp[1] = row[2];
+            // Otherwise, insert this entry into the map
+            tempMap.put(row[0], rmEstimate);
 
-            // Set the value column of temp to be the 1RM of each row
-            temp[0] = estimateOneRepMax(Integer.valueOf(row[4]), Integer.valueOf(row[6]));
-
-            this.RmDataSet.add(temp);
-
-            System.out.println(temp[1] + "\t" + temp[2] + "\t" + temp[0]);
         }
+
+        // Convert the hash set into an array list
+        ArrayList<String> listOfKeys = new ArrayList<String>(tempMap.keySet());
+
+        for(int i = 0; i <tempMap.size(); i++){
+            String[] tempStr = new String[3];
+            tempStr[2] = listOfKeys.get(i);
+            tempStr[1] = this.exercise;
+            Integer tempInt = tempMap.get(listOfKeys.get(i)).intValue();
+            tempStr[0] = String.valueOf(tempInt);
+            this.RmDataSet.add(tempStr);
+        }
+
         
     }
 
@@ -68,14 +84,14 @@ public class VisualizationsWindow {
      * @param reps   The number of reps the user did at that weight
      * @return  The estimated 1 RM of the user on the given exercise
      */
-    private String estimateOneRepMax(int weight, int reps){
+    private float estimateOneRepMax(int weight, int reps){
 
         float brzycki = Brzycki(weight, reps);
         float epley = Epley(weight, reps);
         float lombardi = Lombardi(weight, reps);
         float oconner = OConner(weight, reps);
 
-        return  String.valueOf(Math.round((brzycki+epley+lombardi+oconner)/4));
+        return  Math.round((brzycki+epley+lombardi+oconner)/4);
 
     }
 
@@ -100,7 +116,7 @@ public class VisualizationsWindow {
             else{
                 System.out.println("Invalid rep count");
             }
-            return 0;
+            return 1;
         }
     }
 
@@ -125,7 +141,7 @@ public class VisualizationsWindow {
             else{
                 System.out.println("Invalid rep count");
             }
-            return 0;
+            return 1;
         }
     }
 
@@ -150,7 +166,7 @@ public class VisualizationsWindow {
             else{
                 System.out.println("Invalid rep count");
             }
-            return 0;
+            return 1;
         }
     }
 
@@ -175,7 +191,7 @@ public class VisualizationsWindow {
             else{
                 System.out.println("Invalid rep count");
             }
-            return 0;
+            return 1;
         }
     }
 
