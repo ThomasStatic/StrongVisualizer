@@ -16,6 +16,7 @@ public class VisualizationsWindow {
     private String exercise; 
     private List<String[]> masterSet;
     private List<String[]> RmDataSet;
+    private List<String[]> volumeDataSet;
 
     /**
      * Constructor
@@ -26,7 +27,11 @@ public class VisualizationsWindow {
         this.exercise = exerciseIN;
         this.masterSet = new ArrayList<String[]>(dataSetIN);
         this.RmDataSet = new ArrayList<String[]>();
+        this.volumeDataSet = new ArrayList<String[]>();
     }
+
+
+
 
     /**
      * Formats data for JFreeChart functions and makes appropriate function calls
@@ -83,6 +88,16 @@ public class VisualizationsWindow {
         }
 
         
+    }
+
+    /**
+     * Calculate the volume of a specific set
+     * @param weight the weight the user used on a given set
+     * @param reps the number of reps performed at a given weight
+     * @return the volume done for that set
+     */
+    private int calculateVolume(int weight, int reps){
+        return (int) Math.round(weight * reps);
     }
 
     /**
