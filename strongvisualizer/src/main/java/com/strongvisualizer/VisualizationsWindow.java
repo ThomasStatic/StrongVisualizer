@@ -1,6 +1,12 @@
 package com.strongvisualizer;
 
+import java.awt.FlowLayout;
 import java.util.*;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import org.jfree.chart.ui.ApplicationFrame;
 
 /** 
  * @author Thomas Boyle
@@ -34,11 +40,9 @@ public class VisualizationsWindow {
      * Generate a visual to display volume per exercise per workout over time
      */
     public void displayVolumeVisual(){
-        LineChart volumeChart = new LineChart(this.exercise+" Volume Per Workout Over Time", 
+        new LineChart(this.exercise+" Volume Per Workout Over Time", 
         this.exercise+" Volume Per Workout Over Time", 
         "Data", "Volume (lbs)", this.volumeDataSet);
-        volumeChart.pack();
-        volumeChart.setVisible(true);
     }
 
     /**
@@ -91,11 +95,9 @@ public class VisualizationsWindow {
      * to display data in new window/graph
      */
     public void generateRmVisual(){
-        LineChart rMChart = new LineChart(this.exercise+" 1 RM Estimates Over Time", 
+        new LineChart(this.exercise+" 1 RM Estimates Over Time", 
         this.exercise+" 1 RM Estimates Over Time", 
         "Data", "Estimate (Lbs)", this.RmDataSet);
-        rMChart.pack();
-        rMChart.setVisible(true);
     }
 
     /**
