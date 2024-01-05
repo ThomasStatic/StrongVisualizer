@@ -28,6 +28,10 @@ public class VisualizationsWindow {
         this.RmDataSet = new ArrayList<String[]>();
     }
 
+    /**
+     * Formats data for JFreeChart functions and makes appropriate function calls
+     * to display data in new window/graph
+     */
     public void generateRmVisual(){
         LineChart rMChart = new LineChart(this.exercise+" 1 RM Estimates Over Time", 
         this.exercise+" 1 RM Estimates Over Time", 
@@ -36,6 +40,10 @@ public class VisualizationsWindow {
         rMChart.setVisible(true);
     }
 
+    /**
+     * Parses master data set extracted from CSV file to create a dataset in a 
+     * format useable by JFreeChart
+     */
     public void generateRmDataSet(){
         LinkedHashMap<String, Float> tempMap = new LinkedHashMap<>();
         for(String[] row : this.masterSet){
