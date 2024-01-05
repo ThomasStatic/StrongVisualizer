@@ -2,8 +2,11 @@ package com.strongvisualizer;
 
 import org.jfree.chart.ChartPanel;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.util.*;
+import javax.swing.*;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -12,13 +15,13 @@ import org.jfree.chart.ui.ApplicationFrame;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-public class LineChart extends ApplicationFrame{
+public class LineChart{
 
     private List<String[]> data;
 
     public LineChart(String applicationTitle, String chartTitle, String xAxisTitle,
     String yAxisTitle, List<String[]> dataIN){
-        super(applicationTitle);
+        //super(applicationTitle);
 
         this.data = new ArrayList<String[]>(dataIN);
         
@@ -34,9 +37,14 @@ public class LineChart extends ApplicationFrame{
         
 
         ChartPanel chartPanel = new ChartPanel(lineChart);
-        chartPanel.setPreferredSize(new Dimension(560,367));
-        setContentPane(chartPanel);
 
+        JFrame f = new JFrame(chartTitle);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        f.setLayout(new BorderLayout(0,5));
+        f.add(chartPanel, BorderLayout.CENTER);
+        f.pack();
+
+        f.setVisible(true);
 
     }
 
