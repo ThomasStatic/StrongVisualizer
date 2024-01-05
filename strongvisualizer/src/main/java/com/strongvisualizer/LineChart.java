@@ -51,7 +51,7 @@ public class LineChart extends ApplicationFrame{
         return dataset;
     }
 
-    public static void main( String[ ] args ) {
+    //public static void main( String[ ] args ) {
         // LineChart chart = new LineChart(
         //    "School Vs Years" ,
         //    "Numer of Schools vs years", 
@@ -60,7 +60,7 @@ public class LineChart extends ApplicationFrame{
   
         // chart.pack();
         // chart.setVisible(true);
-     }
+     //}
 
 
 }
