@@ -30,7 +30,60 @@ public class VisualizationsWindow {
         this.volumeDataSet = new ArrayList<String[]>();
     }
 
+    /**
+     * Generate a visual to display volume per exercise per workout over time
+     */
+    public void displayVolumeVisual(){
+        LineChart volumeChart = new LineChart(this.exercise+" Volume Per Workout Over Time", 
+        this.exercise+" Volume Per Workout Over Time", 
+        "Data", "Volume (lbs)", this.volumeDataSet);
+        volumeChart.pack();
+        volumeChart.setVisible(true);
+    }
 
+    /**
+     * Generate a dataset of volume per workout per exercise from the parsed user file
+     */
+    public void generateVolumeDataset(){
+
+        // Create a (natural order preserving) temporary map to condense to 1 date per entry
+        LinkedHashMap<String, Integer> tempMap = new LinkedHashMap<>();
+
+        // For every row in our data set
+        for(String[] row : this.masterSet){
+
+            // Continue if the current row isn't for our desired exercise
+            if(!(row[2].equals(this.exercise))){
+                continue;
+            }
+
+            // If we don't already contain an entry for this date, create one
+            if(!(tempMap.containsKey(row[0]))){
+                Integer setVolume = calculateVolume(Integer.valueOf(row[4]), Integer.valueOf(row[6]));
+                tempMap.put(row[0], setVolume);
+                continue;
+            }
+
+            // If we do have a value for this date, sum it with the volume of this row
+            Integer setVolume = calculateVolume(Integer.valueOf(row[4]), Integer.valueOf(row[6]));
+            Integer prevVolume = tempMap.get(row[0]);
+            tempMap.put(row[0], setVolume+prevVolume);
+
+        }
+
+        // Convert the LinkedHashMap into an ArrayList (for JFreeChart)
+        ArrayList<String> listOfKeys = new ArrayList<String>(tempMap.keySet());
+
+        for(int i = 0; i <tempMap.size(); i++){
+            String[] tempStr = new String[3];
+            tempStr[2] = listOfKeys.get(i);
+            tempStr[1] = this.exercise;
+            Integer tempInt = tempMap.get(listOfKeys.get(i));
+            tempStr[0] = String.valueOf(tempInt);
+            this.volumeDataSet.add(tempStr);
+        }
+
+    }
 
 
     /**

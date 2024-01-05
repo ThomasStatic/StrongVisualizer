@@ -138,6 +138,15 @@ public class MainWindow implements ActionListener{
             VW.generateRmVisual();
         }
 
+        if(evt.getSource() == this.genVolumeBtn){
+            String[] exerciseOptions = this.dataExtractor.getExercises();
+            String exerciseSelection = exerciseOptions[this.excerciseCb.getSelectedIndex()];
+            VisualizationsWindow VW = new VisualizationsWindow(exerciseSelection,this.dataExtractor.getAllData());
+            VW.generateVolumeDataset();
+            VW.displayVolumeVisual();
+            System.out.println("Volume button clicked!");
+        }
+
     }
 
     private void createVisSelectWindow(String[] exerciseOptions){
