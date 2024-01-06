@@ -144,7 +144,15 @@ public class MainWindow implements ActionListener{
             VisualizationsWindow VW = new VisualizationsWindow(exerciseSelection,this.dataExtractor.getAllData());
             VW.generateVolumeDataset();
             VW.displayVolumeVisual();
-            System.out.println("Volume button clicked!");
+            //System.out.println("Volume button clicked!");
+        }
+
+        if(evt.getSource() == this.genTopSetBtn){
+            String[] exerciseOptions = this.dataExtractor.getExercises();
+            String exerciseSelection = exerciseOptions[this.excerciseCb.getSelectedIndex()];
+            VisualizationsWindow VW = new VisualizationsWindow(exerciseSelection,this.dataExtractor.getAllData());
+            VW.generateTopSetDataSet();
+            VW.displayTopSetVisual();
         }
 
     }

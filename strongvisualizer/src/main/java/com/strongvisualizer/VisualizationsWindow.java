@@ -23,6 +23,7 @@ public class VisualizationsWindow {
     private List<String[]> masterSet;
     private List<String[]> RmDataSet;
     private List<String[]> volumeDataSet;
+    private List<String[]> topSetDataSet;
 
     /**
      * Constructor
@@ -34,6 +35,7 @@ public class VisualizationsWindow {
         this.masterSet = new ArrayList<String[]>(dataSetIN);
         this.RmDataSet = new ArrayList<String[]>();
         this.volumeDataSet = new ArrayList<String[]>();
+        this.topSetDataSet = new ArrayList<String[]>();
     }
 
     /**
@@ -43,6 +45,49 @@ public class VisualizationsWindow {
         new LineChart(this.exercise+" Volume Per Workout Over Time", 
         this.exercise+" Volume Per Workout Over Time", 
         "Data", "Volume (lbs)", this.volumeDataSet);
+    }
+
+    public void displayTopSetVisual(){
+        new LineChart(this.exercise + " Top Set Over Time", 
+        this.exercise + " Top Set Over Time",
+        "Date", "Weight (Lbs)", this.topSetDataSet);
+    }
+
+    public void generateTopSetDataSet(){
+        // Create a (natural order preserving) temporary map to condense to 1 date per entry
+        LinkedHashMap<String, String> tempMap = new LinkedHashMap<>();
+
+        // For every row in the dataset
+        for(String row[] : this.masterSet){
+
+            // If the row isn't for our selected exercise, skip it
+            if(!(row[2].equals(this.exercise))){
+                continue;
+            }
+
+            // If no entry has been input yet for this date, create a new one
+            if(!(tempMap.containsKey(row[0]))){
+                tempMap.put(row[0], row[4]);
+                continue;
+            }
+
+            // If there are are more than 1 entries for a date, keep the bigger one
+            if(Integer.valueOf(row[4]) > Integer.valueOf(tempMap.get(row[0]))){
+                tempMap.put(row[0], row[4]);
+            }
+        }
+
+        // Convert the LinkedHashMap to an ArrayList for use by JFreeChart
+        ArrayList<String> listOfKeys = new ArrayList<String>(tempMap.keySet());
+        for(int i = 0; i <tempMap.size(); i++){
+            String[] tempStr = new String[3];
+            tempStr[2] = listOfKeys.get(i);
+            tempStr[1] = this.exercise;
+            tempStr[0] = tempMap.get(listOfKeys.get(i));
+            System.out.println(listOfKeys.get(i));
+            this.topSetDataSet.add(tempStr);
+        }
+
     }
 
     /**
